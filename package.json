@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^6.1.0",
+    "hot-shots": "^5.9.1",
+    "moment": "^2.22.2",
     "rss-parser": "^3.5.2",
     "twit": "^2.2.11"
   }
