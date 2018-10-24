@@ -1,0 +1,17 @@
+{
+  "name": "nosedits",
+  "version": "1.0.0",
+  "description": "Send out a Tweet whenever the title on an NOS articles changes",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^6.1.0",
+    "rss-parser": "^3.5.2",
+    "twit": "^2.2.11"
+  }
+}
