@@ -16,7 +16,7 @@ Alternatively you can use the pm2 process manager
 ```sh
 # Install PM2 if you haven't done so yet
 npm install pm2 -g
-pm2 start galgje.config.js
+pm2 start nosedits.config.js
 ```
 
 ### Contributing
