@@ -25,11 +25,10 @@ const TELEMETRY_INTERVAL = 120; //seconds
 const PURGE_INTERVAL = 24; //hours
 const PURGE_TRESHOLD = 48; //hours
 
-// All NOS feeds to cycle through to 
+// All NOS feeds to cycle through
 const ROOT = "http://feeds.nos.nl/";
 const FEEDS = [
   "nosnieuwsbinnenland"
-  ,"nosnieuwsalgemeen"
   ,"nosnieuwsbuitenland"
   ,"nosnieuwspolitiek"
   ,"nosnieuwseconomie"
