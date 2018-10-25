@@ -21,7 +21,7 @@ let dd_options = {
 const telemetry = new StatsD(dd_options);
 
 const SCRAPER_INTERVAL = 30; //seconds
-const TELEMETRY_INTERVAL = 120; //seconds
+const TELEMETRY_INTERVAL = 60; //seconds
 const PURGE_INTERVAL = 24; //hours
 const PURGE_TRESHOLD = 48; //hours
 
@@ -58,7 +58,14 @@ setInterval(() => {
 setInterval(() => {
   telemetry.check('service.up', telemetry.CHECKS.OK);
   
-
+  for (FEEDINDEX in FEEDS) {
+    let category = FEEDS[FEEDINDEX].replace(/(NOS(\.nl)?)|(nieuws)/gi, '').capitalize();
+    let inCategoryCount = articles.filter(article => {
+      return article.category == category;
+    });
+    
+    telemetry.histogram(category, inCategoryCount.length);
+  }
 }, TELEMETRY_INTERVAL * 1000);
 
 
@@ -70,7 +77,6 @@ async function retrieveArticles() {
   for (FEEDINDEX in FEEDS) {
     let feed = await parser.parseURL(ROOT + FEEDS[FEEDINDEX]);
     let category = feed.title.replace(/(NOS(\.nl)?)|(nieuws)/gi, '').capitalize();
-    telemetry.histogram(category, feed.items.length);
     totalLength = totalLength + feed.items.length;
     feed.items.forEach(item => {
       checkArticleForNewTitle(item, category);
