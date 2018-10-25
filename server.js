@@ -57,22 +57,27 @@ setInterval(() => {
 // Ping the telemetry server every TELEMETRY_INTERVAL seconds so it knows we're still alive
 setInterval(() => {
   telemetry.check('service.up', telemetry.CHECKS.OK);
+  
+
 }, TELEMETRY_INTERVAL * 1000);
 
 
 
 // Main loop - check for new articles in all feeds
 async function retrieveArticles() {
+  let totalLength = 0;
+
   for (FEEDINDEX in FEEDS) {
     let feed = await parser.parseURL(ROOT + FEEDS[FEEDINDEX]);
     let category = feed.title.replace(/(NOS(\.nl)?)|(nieuws)/gi, '').capitalize();
     telemetry.histogram(category, feed.items.length);
+    totalLength = totalLength + feed.items.length;
     feed.items.forEach(item => {
       checkArticleForNewTitle(item, category);
     });
   }
-
-  doAfterCheck();
+  
+  doAfterCheck(totalLength);
 }
 
 function checkArticleForNewTitle(newArticle, injectCategory) {
@@ -81,7 +86,7 @@ function checkArticleForNewTitle(newArticle, injectCategory) {
 
   // Article exists, check if title has changed since the last time we saw it
   let existingArticle = articles.find((article, index, array) => {
-    return (article.guid == newArticle.guid && article.category == newArticle.guid);
+    return (article.guid == newArticle.guid && article.category == newArticle.category);
   });
 
   if (!!existingArticle) {
@@ -115,7 +120,7 @@ function notifyTitleChanged(newArticle, existingArticle) {
     if (err) {
       if (err.code)
       console.log('Error!', err.message);
-      telemetry.event('Edit Tweet Failed', JSON.stringify(err, null, 4));
+      telemetry.event('Status update failed', `Error ${err.code}: ${err.message}`);
       telemetry.check("tweet_result", telemetry.CHECKS.WARNING);
       telemetry.increment('error_rate');
     } else {
@@ -143,9 +148,9 @@ function purgeArticles() {
   console.log(`Purged ${countPurged} articles (${Math.floor(countPurged / total * 100)}%)`)
 }
 
-function doAfterCheck() {
-  // Update article count
+function doAfterCheck(totalLength) {
   telemetry.histogram('article_count', articles.length);
+  telemetry.histogram('feeditems_count', totalLength);
 }
 
 String.prototype.capitalize = function() {
