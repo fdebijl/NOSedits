@@ -76,10 +76,12 @@ async function retrieveArticles() {
 
   for (FEEDINDEX in FEEDS) {
     let feed = await parser.parseURL(ROOT + FEEDS[FEEDINDEX]);
-    let category = feed.title.replace(/(NOS(\.nl)?)|(nieuws)/gi, '').capitalize();
+    let category = feed.title.replace(/(NOS(\.nl)?)|(nieuws)/gi, '').capitalize().trim();
     totalLength = totalLength + feed.items.length;
     feed.items.forEach(item => {
-      checkArticleForNewTitle(item, category);
+      if (category) {
+        checkArticleForNewTitle(item, category);
+      }
     });
   }
   
@@ -117,7 +119,8 @@ function checkArticleForNewTitle(newArticle, injectCategory) {
 // Send tweet that the title of an article has changed
 function notifyTitleChanged(newArticle, existingArticle) {
   telemetry.increment('article_changed');
-  let statusText = `[${newArticle.category}] De kop "${existingArticle.title.trim()}" is zojuist gewijzigd naar "${newArticle.title.trim()}" ${newArticle.guid}`;
+  let cat = newArticle.category ? '[' + newArticle.category + ']' : '';
+  let statusText = `${cat} De kop "${existingArticle.title.trim()}" is zojuist gewijzigd naar "${newArticle.title.trim()}" ${newArticle.guid}`;
   let params = { 
     status: statusText
   }
