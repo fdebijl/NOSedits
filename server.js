@@ -120,7 +120,7 @@ function checkArticleForNewTitle(newArticle, injectCategory) {
 function notifyTitleChanged(newArticle, existingArticle) {
   telemetry.increment('article_changed');
   let cat = newArticle.category ? '[' + newArticle.category + ']' : '';
-  let statusText = `${cat} De kop "${existingArticle.title.trim()}" is zojuist gewijzigd naar "${newArticle.title.trim()}" ${newArticle.guid}`;
+  let statusText = `${cat} De kop «${existingArticle.title.trim()}» is zojuist gewijzigd naar «${newArticle.title.trim()}» ${newArticle.guid}`;
   let params = { 
     status: statusText
   }
