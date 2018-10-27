@@ -19,5 +19,8 @@ npm install pm2 -g
 pm2 start nosedits.config.js
 ```
 
+You will need a set of API keys from Twitter in order to actually send out a Tweet when a changed title is detected. You can get these from the [Twitter Developer](https://developer.twitter.com/en/apply-for-access) site.
+Put these in the .envtemplate and rename this file to .env.
+
 ### Contributing
 Yes please
