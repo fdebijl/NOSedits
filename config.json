@@ -1,0 +1,18 @@
+{
+  "SCRAPER_INTERVAL": 30,
+  "TELEMETRY_INTERVAL": 60,
+  "PURGE_INTERVAL": 24,
+  "PURGE_TRESHOLD": 48,
+  "ROOT": "http://feeds.nos.nl/",
+  "FEEDS": [
+    "nosnieuwsbinnenland"
+    ,"nosnieuwsalgemeen"
+    ,"nosnieuwsbuitenland"
+    ,"nosnieuwspolitiek"
+    ,"nosnieuwseconomie"
+    ,"nosnieuwscultuurenmedia"
+    ,"nosnieuwstech"
+    ,"nosnieuwskoningshuis"
+  ],
+  "USERNAME": "@nosedits"
+}
