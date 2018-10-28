@@ -1,13 +1,19 @@
 {
   "name": "nosedits",
   "version": "1.0.0",
-  "description": "Send out a Tweet whenever the title on an NOS articles changes",
+  "description": "Send out a Tweet whenever the title on an NOS article changes",
   "main": "server.js",
+  "homepage": "https://twitter.com/nosedits",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Fdebijl/NOSedits"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretest": "cd util && node scraper.js && cd ..",
+    "test": "mocha --reporter mochawesome --reporter-options reportDir=test/report",
     "start": "node server.js"
   },
-  "author": "",
+  "author": "Floris de Bijl",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^6.1.0",
@@ -15,5 +21,10 @@
     "moment": "^2.22.2",
     "rss-parser": "^3.5.2",
     "twit": "^2.2.11"
+  },
+  "devDependencies": {
+    "eslint": "^5.8.0",
+    "mocha": "^5.2.0",
+    "mochawesome": "^3.1.1"
   }
 }

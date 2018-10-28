@@ -63,3 +63,10 @@ typings/
 # Images
 *.png
 *.psd
+\.vscode/
+
+test/report/
+
+test/feed\.json
+
+test/feed_with_changes\.json

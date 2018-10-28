@@ -95,9 +95,7 @@ function checkArticleForNewTitle(newArticle, injectCategory) {
 // Send tweet that the title of an article has changed
 function notifyTitleChanged(newArticle, existingArticle) {
   telemetry.increment('article_changed');
-  let cat = newArticle.category ? '[' + newArticle.category + '] ' : '';
-  let statusText = `${cat}De kop «${existingArticle.title.trim()}» is zojuist gewijzigd naar «${newArticle.title.trim()}» ${newArticle.guid}`;
-  let params;
+  let params, statusText = makeStatusText(newArticle, existingArticle);
 
   // Reply to previous Tweet about this title, if it exists
   if (existingArticle.tweetID) {
@@ -146,6 +144,11 @@ function purgeArticles() {
   console.log(`Purged ${countPurged} articles (${Math.floor(countPurged / total * 100)}%)`)
 }
 
+function makeStatusText(newArticle, existingArticle) {
+  let cat = newArticle.category ? '[' + newArticle.category + '] ' : '';
+  return `${cat}De kop «${existingArticle.title.trim()}» is zojuist gewijzigd naar «${newArticle.title.trim()}» ${newArticle.guid}`;
+}
+
 String.prototype.capitalize = function() {
   return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
 };
@@ -160,6 +163,7 @@ module.exports = {
   checkArticleForNewTitle: checkArticleForNewTitle,
   notifyTitleChanged: notifyTitleChanged,
   purgeArticles: purgeArticles,
+  makeStatusText: makeStatusText,
   capitalize: String.prototype.capitalize,
   catStrip: String.prototype.catStrip
 }
