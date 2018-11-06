@@ -117,15 +117,14 @@ function notifyTitleChanged(newArticle, existingArticle) {
       telemetry.check("tweet_result", telemetry.CHECKS.WARNING);
       telemetry.increment('error_rate');
     } else {
-      existingArticle.tweetID = response.id_str;
+      newArticle.tweetID = response.id_str;
       telemetry.check("tweet_result", telemetry.CHECKS.OK);
       console.log(`Sent out a tweet: ${statusText} -- Oldcat: ${existingArticle.source}, newcat: ${newArticle.source}`);
+      // Set old article to new info, otherwise the article would trigger notifyTitleChanged again in the next cycle
+      console.log(`Replacing article at index ${articles.indexOf(existingArticle)} in collection.`);
+      articles[articles.indexOf(existingArticle)] = newArticle;
     }
   })
-
-  // Set old article to new info, otherwise the article would trigger notifyTitleChanged again in the next cycle
-  console.log(`Replacing article at index ${articles.indexOf(existingArticle)} in collection.`);
-  articles[articles.indexOf(existingArticle)] = newArticle;
 }
 
 function purgeArticles() {
