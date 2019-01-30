@@ -1,8 +1,7 @@
 {
   "SCRAPER_INTERVAL": 30,
   "TELEMETRY_INTERVAL": 60,
-  "PURGE_INTERVAL": 24,
-  "PURGE_TRESHOLD": 48,
+  "LOCALE": "nl",
   "ROOT": "http://feeds.nos.nl/",
   "FEEDS": [
     "nosnieuwsbinnenland"
