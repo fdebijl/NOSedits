@@ -37,13 +37,13 @@
 
     const oldtitle = article.titles[article.titles.length - 2];
     const newtitle = article.titles[article.titles.length - 1];
-
+    const timeDiff = moment(oldtitle.timestamp).from(newtitle.timestamp, true);
+    
     let statusText = makeStatusText(
       newtitle.title, 
       oldtitle.title, 
-      moment(oldtitle.datetime).from(newtitle.datetime, true),
-      article.guid || article.link,
-      article.feedtitle ? article.feedtitle.catStrip() : ''
+      timeDiff === 'Invalid date' ? '' : `na ${timeDiff} `,
+      article.guid || article.link
     );
 
     let params = { 
@@ -63,8 +63,8 @@
     })
   }
 
-  function makeStatusText(newtitle, oldtitle, delay, link, cat) {
-    return `${cat}De kop «${oldtitle.trim()}» is na ${delay} gewijzigd naar «${newtitle.trim()}» ${link}`;
+  function makeStatusText(newtitle, oldtitle, delay, link,) {
+    return `De kop «${oldtitle.trim()}» is ${delay}gewijzigd naar «${newtitle.trim()}» ${link}`;
   }
 
   String.prototype.capitalize = function() {
@@ -86,6 +86,8 @@
     if (typeof(req.body) != 'object') {
       req.body = JSON.parse(req.body);
     }
+
+    console.log(req.body);
 
     notifyTitleChanged(req.body);
     res.send(200);
