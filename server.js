@@ -17,7 +17,7 @@
   });
 
   app.use(express.json());
-  let seenArticles = [];
+  let seenArticles = {};
 
   // Load config
   let CONFIG;
@@ -26,12 +26,19 @@
 
   function notifyTitleChanged(article) {
     if (article.titles.length < 2) {
-      console.log('NOSEdits webhook was called without enough titles.');
+      console.log(`[${moment().format('DD/MM/Y - HH:mm:ss')}] NOSEdits webhook was called without enough titles.`);
       return false;
     }
 
-    if (seenArticles.includes(`${article.articleID}___${article.titles[article.titles.length - 1].title}`)) {
-      console.log('Already tweeted this title for this article.');
+    if (!seenArticles[article.articleID]) {
+      seenArticles[article.articleID] = {
+        titles: [],
+        lastTweet: null
+      }
+    }
+
+    if (seenArticles[article.articleID].titles.includes(article.titles[article.titles.length - 1].title)) {
+      console.log(`[${moment().format('DD/MM/Y - HH:mm:ss')}] Already tweeted this title for this article.`);
       return false;
     }
 
@@ -50,16 +57,20 @@
       status: statusText
     }
 
-    // TODO: Reply to previous tweets about this article somehow.
+    if (seenArticles[article.articleID].lastTweet) {
+      params.status = '@nosedits ' + statusText;
+      params.in_reply_to_status_id = seenArticles[article.articleID].lastTweet;
+    }
 
     T.post('statuses/update', params, function (err, data, response) {
       if (err) {
-        if (err.code)
-        console.log('Error!', err.message);
+        console.log(`[${moment().format('DD/MM/Y - HH:mm:ss')}] Error!`, err.message);
       } else {
-        console.log(`Sent out a tweet: ${statusText}`);
-        seenArticles.push(`${article.articleID}___${article.titles[article.titles.length - 1]}`);
+        console.log(`[${moment().format('DD/MM/Y - HH:mm:ss')}] Sent out a tweet: ${statusText}`);
+        seenArticles[article.articleID].lastTweet = data.id_str;
       }
+
+      seenArticles[article.articleID].titles.push(article.titles[article.titles.length - 1].title);
     })
   }
 
@@ -68,7 +79,9 @@
   }
 
   String.prototype.capitalize = function() {
-    return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+    return this.replace(/(?:^|\s)\S/g, function(a) { 
+      return a.toUpperCase(); 
+    });
   };
 
   String.prototype.catStrip = function() {
@@ -87,10 +100,8 @@
       req.body = JSON.parse(req.body);
     }
 
-    console.log(req.body);
-
     notifyTitleChanged(req.body);
-    res.send(200);
+    res.sendStatus(200);
   })
 
   app.listen(7676);
