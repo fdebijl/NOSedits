@@ -9,7 +9,6 @@
     "url": "https://github.com/Fdebijl/NOSedits"
   },
   "scripts": {
-    "pretest": "cd util && node scraper.js && cd ..",
     "test": "mocha --reporter mochawesome --reporter-options reportDir=test/report",
     "start": "node server.js"
   },
@@ -22,8 +21,9 @@
     "twit": "^2.2.11"
   },
   "devDependencies": {
+    "assert": "^2.0.0",
     "eslint": "^5.15.0",
     "mocha": "^5.2.0",
-    "mochawesome": "^3.1.1"
+    "mochawesome": "^3.1.2"
   }
 }
