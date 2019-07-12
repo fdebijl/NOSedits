@@ -9,21 +9,21 @@
     "url": "https://github.com/Fdebijl/NOSedits"
   },
   "scripts": {
-    "pretest": "cd util && node scraper.js && cd ..",
     "test": "mocha --reporter mochawesome --reporter-options reportDir=test/report",
     "start": "node server.js"
   },
   "author": "Floris de Bijl",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^6.1.0",
-    "express": "^4.16.4",
-    "moment": "^2.22.2",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "moment": "^2.24.0",
     "twit": "^2.2.11"
   },
   "devDependencies": {
-    "eslint": "^5.15.0",
-    "mocha": "^5.2.0",
-    "mochawesome": "^3.1.1"
+    "assert": "^2.0.0",
+    "eslint": "^6.0.1",
+    "mocha": "^6.1.4",
+    "mochawesome": "^4.0.1"
   }
 }
