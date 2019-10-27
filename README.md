@@ -2,11 +2,10 @@
 Track changes to titles in NOS articles
 <br><br>
 ### How does it work?
-The NOS RSS feeds are retrieved and parsed into an object. Every entry in the feed is saved into a variable of 'seen' articles.
-Every 30 seconds the script will then retrieve the feed again and compare the new titles for every link with the 'seen' titles (i.e, the titles from the last cycle).
-If the titles differ, the script will issue a Tweet with both the old and the new title.
+NOSEdits receives title changes from [OpenTitles](https://github.com/Fdebijl/OpenTitles.Scraper) via webhooks. These are checked for validity, once they pass all the tests a tweet is issued that the title has been changed.
+
 <br><br>
-### Building
+### Contributing
 ```sh
 npm install
 npm start
@@ -28,6 +27,3 @@ npm test
 ```
 
 A report will be outputed to `/test/report`
-<br><br>
-### Contributing
-Yes please, just make sure the tests still pass.

@@ -1,0 +1,1 @@
+*/2 * * * *  cd /usr/src/nosedits && /usr/local/bin/node index.js >> /dev/null 2>&1
