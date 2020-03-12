@@ -32,7 +32,7 @@ export const validateArticle = (collection: Collection, article: Article): Promi
     getSeenArticle(collection, article).then((seenArticle) => {
       if (seenArticle) {
         if (
-          seenArticle.tweets[seenArticle.tweets.length - 1].oldTitle.title === article.titles[article.titles.length - 2].title,
+          seenArticle.tweets[seenArticle.tweets.length - 1].oldTitle.title === article.titles[article.titles.length - 2].title &&
           seenArticle.tweets[seenArticle.tweets.length - 1].newTitle.title === article.titles[article.titles.length - 1].title
         ) {
           clog.log(ERR.ALREADY_TWEETED.message, LOGLEVEL.ERROR);

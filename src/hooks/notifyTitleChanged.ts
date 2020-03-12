@@ -40,7 +40,7 @@ export async function notifyTitleChanged(article: Article, twitterClient: Twit |
             reject(TwitterError.TWEET_NOT_SENT);
           });
       })
-      .catch((error) => {
+      .catch(() => {
         // Logged elsewhere
       });
   });

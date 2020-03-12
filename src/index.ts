@@ -1,6 +1,5 @@
-import moment from 'moment';
 import express from 'express';
-import { Clog, LOGLEVEL } from '@fdebijl/clog'; 
+import { Clog, LOGLEVEL } from '@fdebijl/clog';
 
 import { CONFIG } from './config';
 import { notifyTitleChanged } from './hooks/notifyTitleChanged';
