@@ -1,38 +1,7 @@
 // Used as a drop-in mocker for Twit
 // Exposes lastRequest as an export so that unit testing suites can verify the right calls are sent to Twitter
 
-let lastRequest = {
-  endpoint: null,
-  params: null
-}
-
-module.exports = {
-  post: (endpoint, params, callback) => {
-    lastRequest = {
-      endpoint: endpoint,
-      params: params
-    }
-
-    callback(null, exampleResponse, null)
-    exampleResponse.id++;
-    exampleResponse.id_str = exampleResponse.id + '';
-  },
-  get: (endpoint, params, callback) => {
-    lastRequest = { 
-      endpoint: endpoint,
-      params: params
-    }
-
-    callback(null, exampleResponse, null)
-  },
-  lastRequest: lastRequest,
-  reset: () => {
-    lastRequest = {
-      endpoint: null,
-      params: null
-    }
-  }
-}
+let lastRequest = {};
 
 const exampleResponse = {
   "created_at": "Wed Oct 10 20:19:24 +0000 2018",
@@ -165,4 +134,32 @@ const exampleResponse = {
   "possibly_sensitive": false,
   "filter_level": "low",
   "lang": "en",
+}
+
+export const mocktwit = {
+  post: (endpoint: string, params: object, callback: Function): void => {
+    lastRequest = {
+      endpoint: endpoint,
+      params: params
+    }
+
+    callback(null, exampleResponse, null)
+    exampleResponse.id++;
+    exampleResponse.id_str = `${exampleResponse.id}`;
+  },
+  get: (endpoint: string, params: object, callback: Function): void => {
+    lastRequest = {
+      endpoint: endpoint,
+      params: params
+    }
+
+    callback(null, exampleResponse, null)
+  },
+  lastRequest: lastRequest,
+  reset: (): void => {
+    lastRequest = {
+      endpoint: null,
+      params: null
+    }
+  }
 }
