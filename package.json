@@ -11,7 +11,8 @@
     "test-only": "mocha --reporter mochawesome --reporter-options reportDir=test/report test/compiled/*.spec.js",
     "start": "node index.js",
     "compile": "tsc --build src",
-    "compile-test": "tsc --build test"
+    "compile-test": "tsc --build test",
+    "lint": "eslint src/**/*.ts test/src/**/*.ts --max-warnings 2"
   },
   "author": "Floris de Bijl",
   "license": "AGPL-3.0",

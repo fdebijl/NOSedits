@@ -17,7 +17,7 @@ describe('initializeTwit', () => {
     process.env.ACCESS_TOKEN_SECRET = 'ABCDEFGHIJKLMNOPQRSTUVWXYABCDEFGHIJKLMNOPQRST';
 
     assert.doesNotThrow(async () => {
-      const T = await initializeTwit();
+      await initializeTwit();
       return;
     })
     return;
