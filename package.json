@@ -7,7 +7,7 @@
     "url": "https://github.com/Fdebijl/NOSedits"
   },
   "scripts": {
-    "test": "npm run compile && npm run compile-test && mocha --reporter mochawesome --reporter-options reportDir=test/report test/compiled/**/*.spec.js",
+    "test": "npm run compile && npm run compile-test && mocha --exit --reporter mochawesome --reporter-options reportDir=test/report test/compiled/**/*.spec.js",
     "test-only": "mocha --reporter mochawesome --reporter-options reportDir=test/report test/compiled/*.spec.js",
     "start": "node index.js",
     "compile": "tsc --build src",
