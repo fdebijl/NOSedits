@@ -2,7 +2,7 @@ FROM node:10-alpine AS base
 WORKDIR /usr/src/nosedits
 COPY package*.json ./
 
-# Builder image used only for compiling Typescript files
+# Builder image used only for compiling TS files
 FROM base as builder
 RUN npm ci
 COPY . .
