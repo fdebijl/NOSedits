@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-import { exampleArticle } from '../shared/examples';
+import { exampleArticle } from '../examples';
 import { makeStatusText } from '../../../dist/util/makeStatusText';
 
 describe('makeStatusText', () => {

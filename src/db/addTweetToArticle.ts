@@ -17,9 +17,6 @@ export const addTweetToArticle = async (collection: Collection, status: Twitter.
       })
 
       collection.updateOne({ org: article.org, articleID: article.articleID }, {$set: {tweets}}, (error) => {
-        if (error) {
-          console.log(error);
-        }
         resolve();
       });
     } else {

@@ -1,9 +1,8 @@
 import { MongoClient, Db } from 'mongodb';
-import { CONFIG } from '../config'
 
-export const connect = async (): Promise<{client: MongoClient; db: Db}> => {
+export const connect = async (mongoUrl: string): Promise<{client: MongoClient; db: Db}> => {
   return new Promise((resolve, reject) => {
-    const client = new MongoClient(CONFIG.MONGO_URL, {
+    const client = new MongoClient(mongoUrl, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     });

@@ -70,11 +70,11 @@ export interface Article {
 export interface MockTwit {
   post(endpoint: string, params: object, callback: Function): void;
   get(endpoint: string, params: object, callback: Function): void;
+  reset(): void;
   lastRequest: {
     endpoint: string;
-    params: object;
-  };
-  reset(): void;
+    params: Params;
+  } | undefined;
 }
 
 export interface Tweet {
