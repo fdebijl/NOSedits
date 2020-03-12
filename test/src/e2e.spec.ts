@@ -1,9 +1,9 @@
 import assert from 'assert';
 
-import { mocktwit } from './shared/mocktwit';
-import { exampleArticle } from './shared/examples';
+// import { mocktwit } from './shared/mocktwit';
+// import { exampleArticle } from './shared/examples';
 
-import { makeStatusText } from '../../dist/util/makeStatusText';
+// import { makeStatusText } from '../../dist/util/makeStatusText';
 
 it('Should pass', async () => {
   assert.ok('Passed');

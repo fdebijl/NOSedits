@@ -1,4 +1,4 @@
-import { MongoClient, Db, Collection } from 'mongodb';
+import { Collection } from 'mongodb';
 import { Article, SeenArticle } from '../types';
 
 /**
