@@ -10,13 +10,13 @@ export const validateArticle = (collection: Collection, article: Article): Promi
 
     if (article.titles.length < 2) {
       clog.log(ERR.NOT_ENOUGH_TITLES.message, LOGLEVEL.ERROR);
-      reject(ERR.NOT_ENOUGH_TITLES.code);
+      reject(ERR.NOT_ENOUGH_TITLES);
       return;
     }
 
     if (article.titles[article.titles.length - 2].title === article.titles[article.titles.length - 1].title) {
       clog.log(ERR.NO_DIFFERENCE.message, LOGLEVEL.ERROR);
-      reject(ERR.NO_DIFFERENCE.code);
+      reject(ERR.NO_DIFFERENCE);
       return;
     }
 
@@ -36,7 +36,7 @@ export const validateArticle = (collection: Collection, article: Article): Promi
           seenArticle.tweets[seenArticle.tweets.length - 1].newTitle.title === article.titles[article.titles.length - 1].title
         ) {
           clog.log(ERR.ALREADY_TWEETED.message, LOGLEVEL.ERROR);
-          reject(ERR.ALREADY_TWEETED.code);
+          reject(ERR.ALREADY_TWEETED);
           return;
         }
       }

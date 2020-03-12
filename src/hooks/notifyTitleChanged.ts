@@ -1,6 +1,8 @@
 import Twit from 'twit';
 import { Collection } from 'mongodb';
+import { Clog, LOGLEVEL } from '@fdebijl/clog';
 
+import { CONFIG } from '../config';
 import { Article, MockTwit, TwitterError, TwitterParams } from '../types';
 import { makeStatusText } from '../util/makeStatusText';
 import { validateArticle } from '../util/validateArticle';
@@ -14,6 +16,8 @@ import { sendTweet } from '../twitter/sendTweet';
  * @returns {Promise} Resolves with the text of the sent tweet if everything went smoothly, rejects with an instance of ERR if an error occurred or the data was invalid.
  */
 export async function notifyTitleChanged(article: Article, twitterClient: Twit | MockTwit, collection: Collection): Promise<TwitterError | string> {
+  const clog = new Clog(CONFIG.MIN_LOGLEVEL);
+
   return new Promise((resolve, reject) => {
     validateArticle(collection, article)
       .then(async (seenArticle) => {
@@ -25,11 +29,11 @@ export async function notifyTitleChanged(article: Article, twitterClient: Twit |
 
         // Reply to previous Tweet about this article, if it exists
         if (seenArticle) {
-          console.log('Found seen article for article ' + article.articleID);
+          clog.log('Found seen article for article ' + article.articleID, LOGLEVEL.DEBUG);
           params.in_reply_to_status_id = seenArticle.tweets[seenArticle.tweets.length - 1].status.id_str;
           params.auto_populate_reply_metadata = true;
         } else {
-          console.log('Did not find seen article for article ' + article.articleID);
+          clog.log('Did not find seen article for article ' + article.articleID, LOGLEVEL.DEBUG);
         }
 
         sendTweet(collection, params, twitterClient, article, seenArticle || undefined)
@@ -40,8 +44,8 @@ export async function notifyTitleChanged(article: Article, twitterClient: Twit |
             reject(TwitterError.TWEET_NOT_SENT);
           });
       })
-      .catch(() => {
-        // Logged elsewhere
-      });
+      .catch((error) => {
+        reject(error);
+      })
   });
 }

@@ -14,7 +14,7 @@ const app = express();
 
   const clog = new Clog(CONFIG.MIN_LOGLEVEL);
 
-  const { db } = await connect();
+  const { db } = await connect(CONFIG.MONGO_URL);
   const T = await initializeTwit();
   const articleCollection = db.collection('articles');
 
@@ -23,7 +23,11 @@ const app = express();
       req.body = JSON.parse(req.body);
     }
 
-    res.status(200).send(notifyTitleChanged(req.body, T, articleCollection));
+    notifyTitleChanged(req.body, T, articleCollection).then((status) => {
+      res.status(200).send(status);
+    }).catch((error) => {
+      res.status(500).send(JSON.stringify(error, null, 4));
+    });
   })
 
   app.listen(CONFIG.PORT, () => {

@@ -2,7 +2,7 @@ import assert from 'assert';
 
 import { getDifferenceBetweenTimestamps } from '../../../../dist/util/time/getDifferenceBetweenTimestamps';
 
-describe('makeStatusText', () => {
+describe('getDifferenceBetweenTimestamps', () => {
   it('Should generate difference in Dutch', async () => {
     const oldTimestamp = 1582156204013; // February 19th 2020, 11:30:16 pm
     const newTimestamp = 1582189809547; // February 20th 2020, 9:10:09 am
@@ -12,4 +12,3 @@ describe('makeStatusText', () => {
     assert.deepStrictEqual(actual, expected);
   });
 });
-
