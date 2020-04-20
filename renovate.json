@@ -1,29 +1,3 @@
 {
-  "extends": [
-    "config:base"
-  ],
-  "packageRules": [
-    {
-      "depTypeList": ["dependencies"],
-      "groupName": "deps",
-      "updateTypes": ["minor", "patch", "pin", "digest", "lockFileMaintenance", "rollback", "bump"],
-      "requiredStatusChecks": null,
-      "automerge": true,
-      "semanticCommits": true,
-      "schedule": [
-        "after 9am and before 11am on monday"
-      ]
-    },
-    {
-      "depTypeList": ["devDependencies"],
-      "groupName": "devDeps",
-      "updateTypes": ["minor", "patch", "pin", "digest", "lockFileMaintenance", "rollback", "bump"],
-      "requiredStatusChecks": null,
-      "automerge": true,
-      "semanticCommits": true,
-      "schedule": [
-        "after 9am and before 11am on monday"
-      ]
-    }
-  ]
+  "extends": ["github>fdebijl/renovate"]
 }
