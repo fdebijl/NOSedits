@@ -35,7 +35,7 @@
     "dotenv": "8.2.0",
     "eslint": "6.8.0",
     "mocha": "7.1.1",
-    "mochawesome": "5.0.0",
+    "mochawesome": "6.1.0",
     "typedoc": "0.17.4",
     "typescript": "3.8.3"
   }
