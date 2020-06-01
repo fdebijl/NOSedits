@@ -18,12 +18,14 @@
   "license": "AGPL-3.0",
   "dependencies": {
     "@fdebijl/clog": "1.30.1",
+    "amqplib": "^0.5.6",
     "express": "4.17.1",
     "moment": "2.26.0",
     "mongodb": "3.5.8",
     "twit": "2.2.11"
   },
   "devDependencies": {
+    "@types/amqplib": "^0.5.13",
     "@types/express": "4.17.6",
     "@types/mocha": "7.0.2",
     "@types/mongodb": "3.5.20",
