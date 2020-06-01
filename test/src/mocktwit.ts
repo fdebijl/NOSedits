@@ -1,5 +1,6 @@
 import { MockTwit as IMockTwit } from "../../src/types";
 import { Params } from 'twit';
+import { IncomingMessage } from "http";
 
 /**
  * Used as a drop-in mocker for Twit
@@ -144,25 +145,25 @@ export class MockTwit implements IMockTwit {
     "lang": "en",
   }
 
-  post(endpoint: string, params: object, callback: Function): void {
+  post(endpoint: string, params: Record<string, unknown>, callback: (err: Error | null, result: Response, response: IncomingMessage | null) => void): void {
     this.lastRequest = {
       endpoint: endpoint,
       params: params
     };
 
-    callback(null, this.exampleResponse, null)
+    callback(null, this.exampleResponse as unknown as Response, null)
     this.exampleResponse.id++;
     this.exampleResponse.id_str = `${this.exampleResponse.id}`;
-  };
+  }
 
-  get(endpoint: string, params: object, callback: Function): void {
+  get(endpoint: string, params: Record<string, unknown>, callback: (err: Error | null, result: Response, response: IncomingMessage | null) => void): void {
     this.lastRequest = {
       endpoint: endpoint,
       params: params
     }
 
-    callback(null, this.exampleResponse, null)
-  };
+    callback(null, this.exampleResponse as unknown as Response, null)
+  }
 
   reset(): void {
     this.lastRequest = undefined;
