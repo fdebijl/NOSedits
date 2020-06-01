@@ -55,7 +55,7 @@ export class MessagequeueListener implements Listener {
     const articleCollection = db.collection('articles');
 
     const exchange = 'opentitles';
-    const key = 'nl.nos'
+    const key = 'nl.NOS'
 
     channel.assertExchange(exchange, 'topic', {
       durable: true
