@@ -11,7 +11,7 @@ import { Listener } from './Listener';
  * @deprecated The WebhookListener does not guarantee ordered delivery, MessageQueueListener is heavily prefered
  */
 export class WebhookListener implements Listener {
-  init() {
+  init(): void {
     const app = express();
 
     (async (): Promise<void> => {
