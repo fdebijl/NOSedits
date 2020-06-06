@@ -4,7 +4,8 @@ export const connect = async (mongoUrl: string): Promise<{client: MongoClient; d
   return new Promise((resolve, reject) => {
     const client = new MongoClient(mongoUrl, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      appname: 'NOSEdits'
     });
 
     client.connect((error) => {
@@ -13,7 +14,7 @@ export const connect = async (mongoUrl: string): Promise<{client: MongoClient; d
         return;
       }
 
-      const db = client.db();
+      const db = client.db('nosedits');
 
       resolve({
         client,
