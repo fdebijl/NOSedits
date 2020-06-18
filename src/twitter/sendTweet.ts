@@ -10,9 +10,6 @@ import { addTweetToArticle } from '../db/addTweetToArticle';
 export async function sendTweet(collection: Collection, params: Twit.Params, twitterClient: Twit | MockTwit, article: Article, seenArticle?: SeenArticle): Promise<void> {
   return new Promise((resolve, reject) => {
     const clog = new Clog(CONFIG.MIN_LOGLEVEL);
-    clog.log(`Sent out a tweet: ${params.status}`, LOGLEVEL.DEBUG);
-    resolve();
-    return;
 
     (twitterClient as Twit).post('statuses/update', params, async (err, result) => {
       if (err) {
