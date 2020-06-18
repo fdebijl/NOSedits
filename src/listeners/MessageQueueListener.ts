@@ -1,5 +1,6 @@
 import amqp from 'amqplib/callback_api';
 import { Clog, LOGLEVEL } from '@fdebijl/clog';
+import * as Sentry from '@sentry/node';
 
 import { CONFIG } from '../config';
 import { notifyTitleChanged } from '../hooks/notifyTitleChanged';
@@ -92,6 +93,8 @@ export class MessagequeueListener implements Listener {
         const payload = JSON.parse(msg.content.toString());
         notifyTitleChanged(payload, T, articleCollection).then(() => {
           // Ack here
+        }).catch((err) => {
+          Sentry.captureException(err);
         })
       }, {
         noAck: true

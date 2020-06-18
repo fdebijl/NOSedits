@@ -40,8 +40,8 @@ export async function notifyTitleChanged(article: Article, twitterClient: Twit |
           .then(() => {
             resolve(params.status);
           })
-          .catch(() => {
-            reject(TwitterError.TWEET_NOT_SENT);
+          .catch((err) => {
+            reject(err);
           });
       })
       .catch((error) => {
