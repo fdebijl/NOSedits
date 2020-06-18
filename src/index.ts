@@ -1,4 +1,9 @@
 import { Clog, LOGLEVEL } from '@fdebijl/clog';
+import * as Sentry from '@sentry/node';
+
+if (process.env.DSN) {
+  Sentry.init({ dsn: process.env.DSN });
+}
 
 import { CONFIG } from './config';
 import { ListenerType } from './listeners/ListenerType';
