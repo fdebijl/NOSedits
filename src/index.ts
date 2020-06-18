@@ -4,7 +4,7 @@ import { CONFIG } from './config';
 import { ListenerType } from './listeners/ListenerType';
 import { Listener } from './listeners/Listener';
 import { MessagequeueListener } from './listeners/MessageQueueListener';
-import { WebhookListener } from './listeners/webhooklistener';
+import { WebhookListener } from './listeners/WebhookListener';
 
 let listener: Listener;
 
