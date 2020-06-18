@@ -8,7 +8,7 @@ import { initializeTwit } from '../twitter/initializeTwit';
 import { Listener } from './Listener';
 
 /**
- * @deprecated The WebhookListener does not guarantee ordered delivery, MessageQueueListener is heavily prefered
+ * The WebhookListener does not guarantee ordered delivery, MessageQueueListener is heavily prefered. Consider this feature deprecated.
  */
 export class WebhookListener implements Listener {
   init(): void {
