@@ -20,7 +20,6 @@ export async function sendTweet(collection: Collection, params: Twit.Params, twi
       }
 
       clog.log(`Sent out a tweet: ${params.status}`, LOGLEVEL.DEBUG);
-      Sentry.captureMessage(`Sent out a tweet: ${params.status}`);
 
       if (seenArticle) {
         addTweetToArticle(collection, result as Twit.Twitter.Status, article);
