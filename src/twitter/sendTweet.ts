@@ -1,7 +1,6 @@
 import { Clog, LOGLEVEL } from '@fdebijl/clog';
 import Twit from 'twit';
 import { Collection } from 'mongodb';
-import * as Sentry from '@sentry/node';
 
 import { CONFIG } from '../config';
 import { MockTwit, Article, SeenArticle } from '../types';
@@ -20,7 +19,6 @@ export async function sendTweet(collection: Collection, params: Twit.Params, twi
       }
 
       clog.log(`Sent out a tweet: ${params.status}`, LOGLEVEL.DEBUG);
-      Sentry.captureMessage(`Sent out a tweet: ${params.status}`);
 
       if (seenArticle) {
         addTweetToArticle(collection, result as Twit.Twitter.Status, article);
