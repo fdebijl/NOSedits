@@ -28,7 +28,7 @@
   "devDependencies": {
     "@types/amqplib": "0.5.13",
     "@types/express": "4.17.7",
-    "@types/mocha": "7.0.2",
+    "@types/mocha": "8.0.0",
     "@types/mongodb": "3.5.25",
     "@types/node": "13.13.14",
     "@types/twit": "2.2.24",
