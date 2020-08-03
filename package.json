@@ -17,12 +17,12 @@
   "author": "Floris de Bijl",
   "license": "AGPL-3.0",
   "dependencies": {
-    "@fdebijl/clog": "1.40.0",
+    "@fdebijl/clog": "1.41.0",
     "@sentry/node": "5.20.1",
     "amqplib": "0.6.0",
     "express": "4.17.1",
     "moment": "2.27.0",
-    "mongodb": "3.5.9",
+    "mongodb": "3.6.0",
     "twit": "2.2.11"
   },
   "devDependencies": {
