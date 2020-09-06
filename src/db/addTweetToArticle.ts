@@ -16,7 +16,7 @@ export const addTweetToArticle = async (collection: Collection, status: Twitter.
         oldTitle: article.titles[article.titles.length - 2]
       })
 
-      collection.updateOne({ org: article.org, articleID: article.articleID }, {$set: {tweets}}, () => {
+      collection.updateOne({ org: article.org, articleId: article.articleID }, {$set: {'tweets': tweets}}, () => {
         resolve();
       });
     } else {
