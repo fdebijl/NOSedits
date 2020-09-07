@@ -5,7 +5,7 @@ Track changes to titles in NOS articles
 NOSEdits receives title changes from [OpenTitles](https://github.com/Fdebijl/OpenTitles.Scraper). These are checked for validity, once they pass all the tests a tweet is issued that the title has been changed.
 <br><br>
 ### Technical Details
-NOSEdits uses the AMQP to listen for title changes dispatched by OpenTitles. Once a message is received it will be checked for validity by `/src/util/validateArticle.ts`. If this method passes, it will be passed on to `/src/twitter/sendTweet.ts` to issue a Tweet for this article. Most checks are self-contained, but to make sure double-posting doesn't happen we also keep track of all Tweets via MongoDB. This database contains all previously issued Tweets with the old title, the new title and the Tweet (formally called a status) as returned by the Twitter API.
+NOSEdits uses AMQP to listen for title changes dispatched by OpenTitles. Once a message is received it will be checked for validity by `/src/util/validateArticle.ts`. If this method passes, it will be passed on to `/src/twitter/sendTweet.ts` to issue a Tweet for this article. Most checks are self-contained, but to make sure double-posting doesn't happen we also keep track of all Tweets via MongoDB. This database contains all previously issued Tweets with the old title, the new title and the Tweet (formally called a status) as returned by the Twitter API.
 
 The deprecated WebhookListener uses Express to listen for POST requests on `localhost:7676/notify`, but otherwise uses the same validation methods that the AMQP listener uses.
 <br><br>
