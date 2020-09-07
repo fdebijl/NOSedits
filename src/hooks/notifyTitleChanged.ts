@@ -8,6 +8,8 @@ import { makeStatusText } from '../util/makeStatusText';
 import { validateArticle } from '../util/validateArticle';
 import { sendTweet } from '../twitter/sendTweet';
 
+const clog = new Clog();
+
 /**
  * Validates an incoming article from OpenTitles and sends out a tweet if all the data is congruent.
  *
@@ -16,8 +18,6 @@ import { sendTweet } from '../twitter/sendTweet';
  * @returns {Promise} Resolves with the text of the sent tweet if everything went smoothly, rejects with an instance of ERR if an error occurred or the data was invalid.
  */
 export async function notifyTitleChanged(article: Article, twitterClient: Twit | MockTwit, collection: Collection): Promise<TwitterError | string> {
-  const clog = new Clog(CONFIG.MIN_LOGLEVEL);
-
   return new Promise((resolve, reject) => {
     validateArticle(collection, article)
       .then(async (seenArticle) => {

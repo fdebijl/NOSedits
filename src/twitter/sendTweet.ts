@@ -7,10 +7,10 @@ import { MockTwit, Article, SeenArticle } from '../types';
 import { insertSeenArticle } from '../db/insertSeenArticle';
 import { addTweetToArticle } from '../db/addTweetToArticle';
 
+const clog = new Clog();
+
 export async function sendTweet(collection: Collection, params: Twit.Params, twitterClient: Twit | MockTwit, article: Article, seenArticle?: SeenArticle): Promise<void> {
   return new Promise((resolve, reject) => {
-    const clog = new Clog(CONFIG.MIN_LOGLEVEL);
-
     (twitterClient as Twit).post('statuses/update', params, async (err, result) => {
       if (err) {
         clog.log(err.message, LOGLEVEL.ERROR);

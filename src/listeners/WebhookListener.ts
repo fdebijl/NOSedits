@@ -7,6 +7,8 @@ import { connect } from '../db/connect';
 import { initializeTwit } from '../twitter/initializeTwit';
 import { Listener } from './Listener';
 
+const clog = new Clog();
+
 /**
  * @deprecated The WebhookListener does not guarantee ordered delivery, MessageQueueListener is heavily prefered
  */
@@ -16,8 +18,6 @@ export class WebhookListener implements Listener {
 
     (async (): Promise<void> => {
       app.use(express.json());
-
-      const clog = new Clog(CONFIG.MIN_LOGLEVEL);
 
       if (!CONFIG.MONGO_URL) {
         throw new Error('MONGO_URL was not defined in environment variables, could not connect to database.');
