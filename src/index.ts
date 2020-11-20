@@ -1,6 +1,7 @@
 import { Clog, LOGLEVEL } from '@fdebijl/clog';
 import fetch from 'node-fetch';
 import * as Sentry from '@sentry/node';
+import { CONFIG } from './config';
 
 if (process.env.DSN) {
   Sentry.init({ dsn: process.env.DSN });
@@ -12,7 +13,6 @@ if (CONFIG.HEARTBEAT_URL) {
   }, 30 * 1000)
 }
 
-import { CONFIG } from './config';
 import { ListenerType } from './listeners/ListenerType';
 import { Listener } from './listeners/Listener';
 import { MessagequeueListener } from './listeners/MessageQueueListener';
