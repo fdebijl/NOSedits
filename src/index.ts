@@ -1,8 +1,15 @@
 import { Clog, LOGLEVEL } from '@fdebijl/clog';
+import fetch from 'node-fetch';
 import * as Sentry from '@sentry/node';
 
 if (process.env.DSN) {
   Sentry.init({ dsn: process.env.DSN });
+}
+
+if (CONFIG.HEARTBEAT_URL) {
+  setInterval(() => {
+    fetch(CONFIG.HEARTBEAT_URL)
+  }, 30 * 1000)
 }
 
 import { CONFIG } from './config';
