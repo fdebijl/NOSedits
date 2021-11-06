@@ -7,12 +7,11 @@
     "url": "https://github.com/Fdebijl/NOSedits"
   },
   "scripts": {
-    "test": "npm run compile && npm run compile-test && mocha --exit --reporter mochawesome --reporter-options reportDir=test/report test/compiled/**/*.spec.js",
-    "test-only": "mocha --reporter mochawesome --reporter-options reportDir=test/report test/compiled/*.spec.js",
+    "test": "nyc -e .ts -x \"*.spec.ts\" -x \"dist/**\" -x \"test/**\" --reporter=json jasmine-ts --config=jasmine.config.json --random=false && mv coverage/coverage-final.json coverage/coverage.json && codecov",
+    "simpletest": "jasmine-ts --config=jasmine.config.json --random=false",
     "start": "node index.js",
-    "compile": "tsc --build src",
-    "compile-test": "tsc --build test",
-    "lint": "eslint src/**/*.ts test/src/**/*.ts --max-warnings 2"
+    "compile": "tsc",
+    "lint": "eslint src/**/*.ts test/**/*.ts --max-warnings 2"
   },
   "author": "Floris de Bijl",
   "license": "AGPL-3.0",
@@ -29,6 +28,7 @@
   "devDependencies": {
     "@types/amqplib": "0.5.16",
     "@types/express": "4.17.9",
+    "@types/jasmine": "^3.10.2",
     "@types/mocha": "8.0.4",
     "@types/mongodb": "3.5.33",
     "@types/node": "13.13.30",
@@ -37,10 +37,17 @@
     "@typescript-eslint/eslint-plugin": "5.3.0",
     "@typescript-eslint/parser": "5.3.0",
     "assert": "2.0.0",
+    "codecov": "^3.8.3",
     "dotenv": "8.2.0",
     "eslint": "7.13.0",
+    "eslint-plugin-jasmine": "^4.1.2",
+    "jasmine": "^3.10.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "jasmine-ts": "^0.4.0",
     "mocha": "8.2.1",
     "mochawesome": "7.0.0",
+    "nyc": "^15.1.0",
+    "ts-node": "^10.4.0",
     "typedoc": "0.20.24",
     "typescript": "4.0.5"
   }

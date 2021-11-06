@@ -1,16 +1,16 @@
 import assert from 'assert';
 
-import { initializeTwit } from '../../../dist/twitter/initializeTwit';
+import { initializeTwit } from '../../src/twitter/initializeTwit';
 
 describe('initializeTwit', () => {
-  it.skip('Should fail when no credentials are set', () => {
+  xit('Should fail when no credentials are set', () => {
     assert.rejects(async () => {
       initializeTwit();
     });
     return;
   });
 
-  it.skip('Should return an instance of Twit when credentials are set', async () => {
+  xit('Should return an instance of Twit when credentials are set', async () => {
     process.env.CONSUMER_KEY = 'ABCDEFGHIJKLMNOPQRSTUVWXY';
     process.env.CONSUMER_SECRET = 'ABCDEFGHIJKLMNOPQRSTUVWXYABCDEFGHIJKLMNOPQRSTUVWXY';
     process.env.ACCESS_TOKEN = '5812395832712489607-ABCDEFGHIJKLMNOPQRSTUVWXYABCDE'

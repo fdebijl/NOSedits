@@ -3,11 +3,22 @@
     "target": "es2018",
     "module": "commonjs",
     "declaration": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
     "removeComments": false,
     "strict": true,
     "alwaysStrict": true,
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-  }
+    "types": [
+      "jasmine",
+      "node"
+    ]
+  },
+  "exclude": [
+    "test/**/*.ts",
+    "dist/**/*.ts"
+  ]
 }

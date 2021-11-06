@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-import { getDifferenceBetweenTimestamps } from '../../../../dist/util/time/getDifferenceBetweenTimestamps';
+import { getDifferenceBetweenTimestamps } from '../../../src/util/time/getDifferenceBetweenTimestamps';
 
 describe('getDifferenceBetweenTimestamps', () => {
   it('Should generate difference in Dutch', async () => {
