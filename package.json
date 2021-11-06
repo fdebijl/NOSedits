@@ -22,7 +22,7 @@
     "express": "4.17.1",
     "moment": "2.29.1",
     "mongodb": "3.7.3",
-    "node-fetch": "2.6.6",
+    "node-fetch": "3.0.0",
     "twit": "2.2.11"
   },
   "devDependencies": {
@@ -32,7 +32,7 @@
     "@types/mocha": "9.0.0",
     "@types/mongodb": "3.5.33",
     "@types/node": "13.13.30",
-    "@types/node-fetch": "2.5.7",
+    "@types/node-fetch": "3.0.2",
     "@types/twit": "2.2.28",
     "@typescript-eslint/eslint-plugin": "5.3.0",
     "@typescript-eslint/parser": "5.3.0",
