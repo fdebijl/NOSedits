@@ -41,7 +41,7 @@ export const validateArticle = (collection: Collection, article: Article): Promi
         }
       }
 
-      resolve(seenArticle);
+      resolve(seenArticle as SeenArticle);
     })
   });
 }

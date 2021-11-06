@@ -4,7 +4,7 @@ import { Article, SeenArticle } from '../types';
 /**
  * Query the DB whether we've seen an article before
  */
-export const getSeenArticle = async (collection: Collection, article: Article): Promise<SeenArticle | null> => {
+export const getSeenArticle = async (collection: Collection, article: Article): Promise<SeenArticle | void> => {
   return new Promise((resolve, reject) => {
     collection.findOne({'org': article.org, 'articleId': article.articleID }, (error, result) => {
       if (error) {
@@ -13,7 +13,7 @@ export const getSeenArticle = async (collection: Collection, article: Article): 
       }
 
       if (result) {
-        resolve(result);
+        resolve(result as SeenArticle);
       } else {
         resolve();
       }
