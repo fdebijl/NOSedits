@@ -38,7 +38,7 @@ export async function notifyTitleChanged(article: Article, twitterClient: Twit |
 
         sendTweet(collection, params, twitterClient, article, seenArticle || undefined)
           .then(() => {
-            resolve(params.status);
+            resolve(params.status as string);
           })
           .catch((err) => {
             reject(err);
