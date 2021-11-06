@@ -16,7 +16,10 @@ describe('notifyTitleChanged', () => {
   beforeEach(async () => {
     mocktwit = new MockTwit();
     const { db } = await connect(CONFIG.MONGO_URL);
-    db.dropCollection('articles');
+    const articleCollectionExists = await db.listCollections({ name: 'articles' }).hasNext();
+    if (articleCollectionExists) {
+      db.dropCollection('articles');
+    }
     articleCollection = db.collection('articles');
     return;
   });
