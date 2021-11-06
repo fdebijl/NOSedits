@@ -14,7 +14,7 @@ export const connect = async (mongoUrl: string): Promise<{client: MongoClient; d
         return;
       }
 
-      const db = client.db('nosedits');
+      const db = client.db('noseditstest');
 
       resolve({
         client,

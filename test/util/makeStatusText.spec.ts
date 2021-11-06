@@ -1,7 +1,7 @@
 import assert from 'assert';
 
-import { exampleArticle } from '../examples';
-import { makeStatusText } from '../../../dist/util/makeStatusText';
+import { exampleArticle } from '../_fixtures/examples';
+import { makeStatusText } from '../../src/util/makeStatusText';
 
 describe('makeStatusText', () => {
   it('Should generate status text', async () => {

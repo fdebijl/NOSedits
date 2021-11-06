@@ -1,22 +1,25 @@
 import assert from 'assert';
 import { Collection } from 'mongodb';
 
-import { exampleArticle, exampleArticle2, sameTitlesArticle } from '../examples';
-import { MockTwit } from '../mocktwit';
+import { exampleArticle, exampleArticle2, sameTitlesArticle } from '../_fixtures/examples';
+import { MockTwit } from '../_fixtures/mocktwit';
 import { CONFIG } from '../config';
 
-import { TwitterError } from '../../../dist/types';
-import { connect } from '../../../dist/db/connect';
-import { notifyTitleChanged } from '../../../dist/hooks/notifyTitleChanged';
+import { TwitterError } from '../../src/types';
+import { connect } from '../../src/db/connect';
+import { notifyTitleChanged } from '../../src/hooks/notifyTitleChanged';
 
 describe('notifyTitleChanged', () => {
   let mocktwit: MockTwit;
   let articleCollection: Collection;
 
-  before(async () => {
+  beforeEach(async () => {
     mocktwit = new MockTwit();
     const { db } = await connect(CONFIG.MONGO_URL);
-    db.dropCollection('articles');
+    const articleCollectionExists = await db.listCollections({ name: 'articles' }).hasNext();
+    if (articleCollectionExists) {
+      db.dropCollection('articles');
+    }
     articleCollection = db.collection('articles');
     return;
   });
