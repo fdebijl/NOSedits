@@ -35,7 +35,6 @@ dotenv is included as a devDependency, it is recommended to use a `.env` file fo
 ### Testing
 ```sh
 npm ci
-npm run test
+npm run simpletest
+# or 'npm run test' when collecting coverage
 ```
-
-A report will be output to `/test/report`. Due to some peculiarities with Typescript, the tests are located under `/test/src`, but executed as plain Javascript from `/test/compiled`.
