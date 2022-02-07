@@ -49,7 +49,7 @@
     "mocha": "9.2.0",
     "mochawesome": "7.0.1",
     "nyc": "15.1.0",
-    "ts-node": "10.4.0",
+    "ts-node": "10.5.0",
     "typedoc": "0.22.11",
     "typescript": "4.5.5"
   }
