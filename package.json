@@ -22,7 +22,7 @@
     "express": "4.17.2",
     "moment": "2.29.4",
     "mongodb": "4.1.4",
-    "node-fetch": "2.6.6",
+    "node-fetch": "2.6.7",
     "twit": "2.2.11"
   },
   "devDependencies": {
