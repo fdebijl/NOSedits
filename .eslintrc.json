@@ -1,26 +1,16 @@
 {
   "extends": [
-    "plugin:@typescript-eslint/recommended"
+    "@fdebijl",
+    "plugin:import/recommended",
+    "plugin:import/typescript"
   ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion":  2018,
-    "sourceType":  "module",
-    "ecmaFeatures": {
-      "legacyDecorators": true
+  "plugins": [
+    "import"
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": true,
+      "typescript": true
     }
-  },
-  "rules": {
-    "no-console": 1,
-    "no-plusplus": 0,
-    "no-await-in-loop": 0,
-    "max-len": 0,
-    "object-curly-newline": 0,
-    "no-trailing-spaces": 1,
-    "prefer-arrow-callback": 1,
-    "@typescript-eslint/camelcase": 0
-  },
-  "env": {
-    "node": true
   }
 }

@@ -5,14 +5,14 @@ import * as Sentry from '@sentry/node';
 import { CONFIG } from '../config';
 import { notifyTitleChanged } from '../hooks/notifyTitleChanged';
 import { connect } from '../db/connect';
-import { initializeTwit } from '../twitter/initializeTwit';
 import { Listener } from './Listener';
+import { SeenArticle } from '../types';
 
 export class MessagequeueListener implements Listener {
   private clog: Clog;
 
   constructor() {
-    this.clog = new Clog(CONFIG.MIN_LOGLEVEL);
+    this.clog = new Clog();
   }
 
   private async connectToMQ(): Promise<amqp.Channel> {
@@ -35,7 +35,7 @@ export class MessagequeueListener implements Listener {
             throw error1;
           }
 
-          this.clog.log(`Succesfully created channel`, LOGLEVEL.DEBUG);
+          this.clog.log('Succesfully created channel', LOGLEVEL.DEBUG);
 
           resolve(channel);
         });
@@ -51,8 +51,7 @@ export class MessagequeueListener implements Listener {
     const channel: amqp.Channel = await this.connectToMQ();
 
     const { db } = await connect(CONFIG.MONGO_URL);
-    const T = await initializeTwit();
-    const articleCollection = db.collection('articles');
+    const articleCollection = db.collection<SeenArticle>('articles');
 
     const exchange = 'opentitles';
     const key = 'nl.NOS'
@@ -91,7 +90,7 @@ export class MessagequeueListener implements Listener {
         }
 
         const payload = JSON.parse(msg.content.toString());
-        notifyTitleChanged(payload, T, articleCollection).then(() => {
+        notifyTitleChanged(payload,articleCollection).then(() => {
           // Ack here
         }).catch((err) => {
           Sentry.captureException(err);

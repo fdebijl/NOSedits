@@ -20,7 +20,7 @@ import { WebhookListener } from './listeners/WebhookListener';
 
 let listener: Listener;
 
-const clog = new Clog(CONFIG.MIN_LOGLEVEL);
+const clog = new Clog();
 
 switch (CONFIG.LISTENER) {
   case ListenerType.MessageQueue: {
@@ -29,12 +29,12 @@ switch (CONFIG.LISTENER) {
   }
   case ListenerType.Webhook: {
     listener = new WebhookListener();
-    clog.log(`DEPRECATION WARNING: The WebhookListener is deprecated, the MessageQueueListener should be used wherever possible.`, LOGLEVEL.WARN);
+    clog.log('DEPRECATION WARNING: The WebhookListener is deprecated, the MessageQueueListener should be used wherever possible.', LOGLEVEL.WARN);
     break;
   }
   default: {
     listener = new WebhookListener();
-    clog.log(`DEPRECATION WARNING: The WebhookListener is deprecated, the MessageQueueListener should be used wherever possible. Set environment var 'LISTENER' to 'mq' to enable the MessageQueueListener.`, LOGLEVEL.WARN);
+    clog.log('DEPRECATION WARNING: The WebhookListener is deprecated, the MessageQueueListener should be used wherever possible. Set environment var \'LISTENER\' to \'mq\' to enable the MessageQueueListener.', LOGLEVEL.WARN);
     break;
   }
 }
