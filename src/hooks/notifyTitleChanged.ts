@@ -16,7 +16,6 @@ const clog = new Clog();
  */
 export const notifyTitleChanged = async (article: Article, collection: Collection<SeenArticle>): Promise<TwitterError | string> => {
   try {
-    debugger;
     const seenArticle = await validateArticle(collection, article);
     const text = await makeStatusText(article);
     const params: SendTweetV2Params = { text } satisfies SendTweetV2Params;

@@ -9,8 +9,8 @@
   "author": "Floris de Bijl",
   "license": "AGPL-3.0",
   "scripts": {
-    "test": "nyc -e .ts -x \"*.spec.ts\" -x \"dist/**\" -x \"test/**\" --reporter=json jasmine-ts --config=jasmine.config.json --random=false && mv coverage/coverage-final.json coverage/coverage.json && codecov",
-    "simpletest": "jasmine-ts --config=jasmine.config.json --random=false",
+    "test": "nyc -e .ts -x \"*.spec.ts\" -x \"dist/**\" -x \"test/**\" --reporter=json jasmine-ts --config=jasmine.config.json --random=false",
+    "test:unit": "jasmine-ts --config=jasmine.config.json --random=false",
     "start": "node index.js",
     "compile": "tsc",
     "lint": "eslint src/**/*.ts --max-warnings 2"
@@ -37,9 +37,6 @@
     "@types/node-fetch": "2.6.4",
     "@typescript-eslint/eslint-plugin": "6.6.0",
     "@typescript-eslint/parser": "6.6.0",
-    "assert": "2.1.0",
-    "cash-mv": "0.2.0",
-    "codecov": "3.8.3",
     "dotenv": "16.3.1",
     "eslint": "8.49.0",
     "eslint-import-resolver-typescript": "^3.6.0",

@@ -8,8 +8,6 @@ export const validateArticle = (collection: Collection<SeenArticle>, article: Ar
 return new Promise((resolve, reject) => {
     const clog = new Clog();
 
-    debugger;
-
     if (article.titles.length < 2) {
       clog.log(ERR.NOT_ENOUGH_TITLES.message, LOGLEVEL.ERROR);
       reject(ERR.NOT_ENOUGH_TITLES);

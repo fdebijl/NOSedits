@@ -27,7 +27,6 @@ export class WebhookListener implements Listener {
       const articleCollection = db.collection<SeenArticle>('articles');
 
       app.post('/notify', (req, res) => {
-        debugger;
         if (typeof (req.body) != 'object') {
           req.body = JSON.parse(req.body);
         }

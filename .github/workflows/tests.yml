@@ -9,7 +9,6 @@ on:
 env:
   NODE_VERSION: '18'
 
-
 jobs:
   build:
     name: Build
@@ -52,6 +51,10 @@ jobs:
         env:
           CI: true
           NODE_ENV: production
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
   lint:
     name: Lint
     runs-on: ubuntu-22.04
