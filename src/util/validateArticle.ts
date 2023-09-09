@@ -5,7 +5,7 @@ import { Article, TwitterError as ERR, SeenArticle } from '../types';
 import { getSeenArticle } from '../db/getSeenArticle';
 
 export const validateArticle = (collection: Collection<SeenArticle>, article: Article): Promise<SeenArticle | null> => {
-return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     const clog = new Clog();
 
     if (article.titles.length < 2) {
