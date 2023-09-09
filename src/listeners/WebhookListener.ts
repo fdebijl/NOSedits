@@ -4,8 +4,8 @@ import { Clog, LOGLEVEL } from '@fdebijl/clog';
 import { CONFIG } from '../config';
 import { notifyTitleChanged } from '../hooks/notifyTitleChanged';
 import { connect } from '../db/connect';
-import { initializeTwit } from '../twitter/initializeTwit';
 import { Listener } from './Listener';
+import { SeenArticle } from '../types';
 
 const clog = new Clog();
 
@@ -24,15 +24,14 @@ export class WebhookListener implements Listener {
       }
 
       const { db } = await connect(CONFIG.MONGO_URL);
-      const T = await initializeTwit();
-      const articleCollection = db.collection('articles');
+      const articleCollection = db.collection<SeenArticle>('articles');
 
       app.post('/notify', (req, res) => {
         if (typeof (req.body) != 'object') {
           req.body = JSON.parse(req.body);
         }
 
-        notifyTitleChanged(req.body, T, articleCollection).then((status) => {
+        notifyTitleChanged(req.body,articleCollection).then((status) => {
           res.status(200).send(status);
         }).catch((error) => {
           res.status(500).send(JSON.stringify(error, null, 4));

@@ -1,4 +1,4 @@
-import { Twitter, Params } from 'twit';
+import { TweetV2PostTweetResult } from 'twitter-api-v2';
 
 export class TwitterError {
   static readonly ALREADY_TWEETED = {
@@ -25,10 +25,6 @@ export class TwitterError {
     code: 'ERR_TITLES_NOT_CHRONOLOGICAL',
     message: 'The titles in this article are not ordered chronologically: one or more titles had a timestamp that is earlier than the one before it'
   }
-}
-
-export interface TwitterParams extends Params {
-  auto_populate_reply_metadata?: boolean;
 }
 
 export interface Title {
@@ -67,24 +63,24 @@ export interface Article {
   pub_date: string;
 }
 
-export interface MockTwit {
-  post(endpoint: string, params: object, callback: Function): void;
-  get(endpoint: string, params: object, callback: Function): void;
-  reset(): void;
-  lastRequest: {
-    endpoint: string;
-    params: Params;
-  } | undefined;
-}
-
 export interface Tweet {
   newTitle: Title;
   oldTitle: Title;
-  status: Twitter.Status;
+  status: ShimmedTweetV2PostTweetResultData;
 }
 
 export interface SeenArticle {
   org: string;
   articleId: string;
   tweets: Tweet[];
+}
+
+export interface ShimmedTweetV2PostTweetResult extends TweetV2PostTweetResult {
+  data: ShimmedTweetV2PostTweetResultData;
+}
+
+export interface ShimmedTweetV2PostTweetResultData {
+  id: string;
+  text: string;
+  id_str: string;
 }

@@ -1,10 +1,10 @@
 import { Clog, LOGLEVEL } from '@fdebijl/clog';
 import { Collection } from 'mongodb';
 
-import { Article, TwitterError as ERR, SeenArticle } from "../types";
+import { Article, TwitterError as ERR, SeenArticle } from '../types';
 import { getSeenArticle } from '../db/getSeenArticle';
 
-export const validateArticle = (collection: Collection, article: Article): Promise<SeenArticle | null> => {
+export const validateArticle = (collection: Collection<SeenArticle>, article: Article): Promise<SeenArticle | null> => {
   return new Promise((resolve, reject) => {
     const clog = new Clog();
 

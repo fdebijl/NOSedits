@@ -1,12 +1,14 @@
-import Twit from 'twit';
+import { TwitterApi, TwitterApiReadWrite } from 'twitter-api-v2';
 
-export const initializeTwit = async (): Promise<Twit> => {
-  const T = new Twit({
-    consumer_key: process.env.CONSUMER_KEY as string,
-    consumer_secret: process.env.CONSUMER_SECRET as string,
-    access_token: process.env.ACCESS_TOKEN as string,
-    access_token_secret: process.env.ACCESS_TOKEN_SECRET as string
-  });
+import { CONFIG } from '../config';
 
-  return T;
-};
+export let twitterClient: TwitterApiReadWrite;
+
+(async () => {
+  twitterClient = new TwitterApi({
+    appKey: CONFIG.TWITTER.APP_KEY,
+    appSecret: CONFIG.TWITTER.APP_SECRET,
+    accessToken: CONFIG.TWITTER.ACCESS_TOKEN,
+    accessSecret: CONFIG.TWITTER.ACCESS_SECRET
+  }).readWrite;
+})();
