@@ -1,14 +1,16 @@
 import { TweetV2PostTweetResult } from 'twitter-api-v2';
+import { AppBskyFeedPost } from '@atproto/api';
+import { mastodon } from 'masto';
 
-export class TwitterError {
-  static readonly ALREADY_TWEETED = {
-    code: 'ERR_ALREADY_TWEETED',
-    message: 'Already tweeted this combination of titles'
+export class PostError {
+  static readonly ALREADY_POSTED = {
+    code: 'ERR_ALREADY_POSTED',
+    message: 'Already posted this combination of titles'
   };
 
   static readonly NOT_ENOUGH_TITLES = {
     code: 'ERR_NOT_ENOUGH_TITLES',
-    message: 'The article only contained one title, atleast two are needed to formulate a Tweet'
+    message: 'The article only contained one title, atleast two are needed to formulate a post'
   };
 
   static readonly NO_DIFFERENCE = {
@@ -16,9 +18,9 @@ export class TwitterError {
     message: 'The last two titles in the article are the same, ignoring hook'
   };
 
-  static readonly TWEET_NOT_SENT = {
-    code: 'ERR_COULD_NOT_SEND_TWEET',
-    message: 'An unknown error occured while sending the Tweet for this article'
+  static readonly POST_NOT_SENT = {
+    code: 'ERR_COULD_NOT_SEND_POST',
+    message: 'An unknown error occured while sending the post for this article'
   };
 
   static readonly NOT_CHRONOLOGICAL = {
@@ -63,16 +65,29 @@ export interface Article {
   pub_date: string;
 }
 
-export interface Tweet {
+export interface Post {
   newTitle: Title;
   oldTitle: Title;
+}
+
+export interface Tweet extends Post {
   status: ShimmedTweetV2PostTweetResultData;
+}
+
+export interface Toot extends Post {
+  status: mastodon.v1.Status;
+}
+
+export interface Skeet extends Post {
+  status: PersistedBlueSkyRecord;
 }
 
 export interface SeenArticle {
   org: string;
   articleId: string;
   tweets: Tweet[];
+  toots: Toot[];
+  skeets: Skeet[];
 }
 
 export interface ShimmedTweetV2PostTweetResult extends TweetV2PostTweetResult {
@@ -83,4 +98,9 @@ export interface ShimmedTweetV2PostTweetResultData {
   id: string;
   text: string;
   id_str: string;
+}
+
+export interface PersistedBlueSkyRecord extends AppBskyFeedPost.Record {
+  uri: string;
+  cid: string;
 }

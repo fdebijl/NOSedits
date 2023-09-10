@@ -4,7 +4,7 @@
   "homepage": "https://twitter.com/nosedits",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Fdebijl/NOSedits"
+    "url": "https://github.com/fdebijl/NOSedits"
   },
   "author": "Floris de Bijl",
   "license": "AGPL-3.0",
@@ -16,16 +16,17 @@
     "lint": "eslint src/**/*.ts --max-warnings 0"
   },
   "dependencies": {
+    "@atproto/api": "0.6.11",
     "@fdebijl/clog": "1.157.0",
     "@sentry/node": "7.68.0",
     "amqplib": "0.10.3",
+    "dotenv": "16.3.1",
     "express": "4.18.2",
     "masto": "6.2.0",
     "moment": "2.29.4",
     "mongodb": "6.0.0",
     "node-fetch": "2.6.7 <3",
-    "twitter-api-v2": "1.15.1",
-    "dotenv": "16.3.1"
+    "twitter-api-v2": "1.15.1"
   },
   "devDependencies": {
     "@fdebijl/eslint-config": "1.3.0",
