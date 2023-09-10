@@ -10,7 +10,7 @@ export const addTweetToArticle = async (collection: Collection<SeenArticle>, sta
   const seenArticle = await getSeenArticle(collection, article);
 
   if (seenArticle) {
-    const tweets = seenArticle.tweets;
+    const tweets = seenArticle.tweets  || [];
 
     tweets.push({
       status: status.data,
