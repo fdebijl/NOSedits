@@ -11,7 +11,7 @@ export const addTootToArticle = async (collection: Collection<SeenArticle>, stat
   const seenArticle = await getSeenArticle(collection, article);
 
   if (seenArticle) {
-    const toots = seenArticle.toots;
+    const toots = seenArticle.toots || [];
 
     toots.push({
       status,

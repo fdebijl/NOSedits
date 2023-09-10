@@ -10,7 +10,7 @@ export const addSkeetToArticle = async (collection: Collection<SeenArticle>, sta
   const seenArticle = await getSeenArticle(collection, article);
 
   if (seenArticle) {
-    const skeets = seenArticle.skeets
+    const skeets = seenArticle.skeets || [];
 
     skeets.push({
       status,
