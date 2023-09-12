@@ -16,7 +16,7 @@
     "lint": "eslint src/**/*.ts --max-warnings 0"
   },
   "dependencies": {
-    "@atproto/api": "0.6.11",
+    "@atproto/api": "0.6.12",
     "@fdebijl/clog": "1.157.0",
     "@sentry/node": "7.68.0",
     "amqplib": "0.10.3",
