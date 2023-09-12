@@ -25,7 +25,7 @@
     "masto": "6.2.0",
     "moment": "2.29.4",
     "mongodb": "6.0.0",
-    "node-fetch": "2.6.7 <3",
+    "node-fetch": "2.6.7 <4",
     "twitter-api-v2": "1.15.1"
   },
   "devDependencies": {
