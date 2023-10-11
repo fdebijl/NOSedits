@@ -1,5 +1,4 @@
 import { Clog, LOGLEVEL } from '@fdebijl/clog';
-import fetch from 'node-fetch';
 import * as Sentry from '@sentry/node';
 import { CONFIG } from './config';
 
