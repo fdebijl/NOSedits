@@ -7,7 +7,7 @@ import { SeenArticle, Article, PersistedBlueSkyRecord } from '../types';
 import { addSkeetToArticle } from '../db';
 
 const clog = new Clog();
-const agent = new BskyAgent({ service: 'https://bsky.social' });
+export const agent = new BskyAgent({ service: 'https://bsky.social' });
 
 (async () => {
   await agent.login({ identifier: CONFIG.BLUESKY.IDENTIFIER, password: CONFIG.BLUESKY.PASSWORD });

@@ -11,7 +11,7 @@ import { getSeenArticle, insertSeenArticle } from '../db';
 
 import { sendToot } from './sendToot';
 import { sendTweet } from './sendTweet';
-import { sendSkeet } from './sendSkeet';
+import { agent, sendSkeet } from './sendSkeet';
 
 const clog = new Clog();
 
@@ -81,9 +81,12 @@ export const postToAllPlatforms = async (article: Article, collection: Collectio
 
   if (CONFIG.USE_BLUESKY) {
     try {
+      const rt = new RichText({ text });
+      await rt.detectFacets(agent);
       const skeetParams: Omit<AppBskyFeedPost.Record, 'createdAt'> = {
-        text: new RichText({ text }).text // tfw text: text(text).text
-      }
+        text: rt.text,
+        facets: rt.facets
+      };
 
       if (seenArticle.skeets.length > 0) {
         clog.log(`Found previous skeet(s) for ${article.org}:${article.articleID}`, LOGLEVEL.DEBUG);
