@@ -1,4 +1,4 @@
-FROM node:20-alpine AS base
+FROM node:21-alpine AS base
 WORKDIR /usr/src/nosedits
 COPY package*.json ./
 
