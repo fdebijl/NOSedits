@@ -46,7 +46,7 @@
     "jasmine-ts": "0.4.0",
     "mocha": "10.4.0",
     "mochawesome": "7.1.3",
-    "nyc": "15.1.0",
+    "nyc": "17.0.0",
     "ts-node": "10.9.2",
     "typescript": "5.4.5"
   },
