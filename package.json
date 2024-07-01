@@ -18,7 +18,7 @@
   "dependencies": {
     "@atproto/api": "0.12.17",
     "@fdebijl/clog": "1.165.0",
-    "@sentry/node": "7.117.0",
+    "@sentry/node": "8.13.0",
     "amqplib": "0.10.4",
     "dotenv": "16.4.5",
     "express": "4.19.2",
