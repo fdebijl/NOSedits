@@ -34,7 +34,7 @@
     "@types/jasmine": "3.10.11 <4",
     "@types/mocha": "10.0.7",
     "@types/mongodb": "4.0.7",
-    "@types/node": "20.14.10",
+    "@types/node": "20.14.15",
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.21.0",
     "eslint": "8.57.0",
@@ -44,11 +44,11 @@
     "jasmine": "3.99.0 <4",
     "jasmine-spec-reporter": "7.0.0",
     "jasmine-ts": "0.4.0",
-    "mocha": "10.6.0",
+    "mocha": "10.7.3",
     "mochawesome": "7.1.3",
     "nyc": "15.1.0",
     "ts-node": "10.9.2",
-    "typescript": "5.5.3"
+    "typescript": "5.5.4"
   },
   "engines": {
     "node": ">=20.0.0"
